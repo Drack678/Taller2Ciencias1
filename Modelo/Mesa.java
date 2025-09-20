@@ -2,6 +2,7 @@ package Modelo;
 
 public class Mesa {
     //bot
+    // marlon es un bot
     private Nodo head; // Primer nodo 
     private Nodo tail; // Nodo Final 
     private int tamannio; // tamaño de la mesa
