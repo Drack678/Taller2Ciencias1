@@ -16,7 +16,7 @@ public class JuegoControler {
     private VentanaPrincipal ventana;
 
     public JuegoControler(int cantidadPastores) {
-        mesa = new Mesa(null, null, 0);
+        mesa = new Mesa();
         pila = new Pila();
         generador = new Generador();
 

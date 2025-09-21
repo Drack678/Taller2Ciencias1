@@ -7,7 +7,7 @@ public class Juego {
     
     public Juego() {
         this.turno = 0;
-        this.mesa = new Mesa(null, null, 0);
+        this.mesa = new Mesa();
         this.numeroPastores = 0;
     }
 
