@@ -1,6 +1,11 @@
 package Modelo;
 import java.util.Random;
 
+/**
+ * La clase Generador se encarga de crear instancias aleatorias de la clase Pastor.
+ * Genera valores aleatorios para los atributos de Pastor, como el tesoro, oficio y cantidad de feligreses.
+ * Además, asigna un identificador único autoincremental a cada Pastor generado.
+ */
 public class Generador {
 
     private static int contadorId = 1; // autoincremental
@@ -21,9 +26,15 @@ public class Generador {
         "Dios del norte"
     };
 
-    // Generar un Pastor aleatorio
-        public  Pastor generarPastor() {
-        
+    /**
+     * Genera un objeto Pastor con atributos aleatorios.
+     * El ID es único y autoincremental, el tesoro se encuentra en el rango [tesoroMin, tesoroMax],
+     * el oficio se selecciona aleatoriamente de la lista de oficios disponibles,
+     * y la cantidad de feligreses es un número aleatorio entre 0 y feligresesMax.
+     *
+     * @return Un nuevo objeto Pastor con valores aleatorios.
+     */
+    public Pastor generarPastor() {
         // ID único autoincremental
         int id = contadorId++;
         
