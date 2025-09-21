@@ -10,8 +10,6 @@ public class Pastor {
     private int tesoro; // Valor del tesoro asociado al pastor
     private String oficio; // Oficio o rol del pastor
     private int feligreses; // Número de feligreses a cargo del pastor
-    private String nombre; // Nombre del pastor
-    private boolean activo; // Estado de actividad del pastor
 
     /**
      * Constructor de la clase Pastor.
@@ -21,15 +19,12 @@ public class Pastor {
      * @param oficio     Oficio o rol del pastor
      * @param feligreses Número de feligreses a cargo del pastor
      * @param nombre     Nombre del pastor
-     * @param activo     Estado de actividad del pastor (true si está activo)
      */
-    public Pastor(int id, int tesoro, String oficio, int feligreses, String nombre, boolean activo) {
+    public Pastor(int id, int tesoro, String oficio, int feligreses) {
         this.id = id;
         this.tesoro = tesoro;
         this.oficio = oficio;
         this.feligreses = feligreses;
-        this.nombre = nombre;
-        this.activo = activo;
     }
 
     /**
@@ -94,37 +89,5 @@ public class Pastor {
      */
     public void setFeligreses(int feligreses) {
         this.feligreses = feligreses;
-    }
-
-    /**
-     * Obtiene el nombre del pastor.
-     * @return nombre del pastor
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * Establece el nombre del pastor.
-     * @param nombre Nuevo nombre
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    /**
-     * Indica si el pastor está activo.
-     * @return true si está activo, false en caso contrario
-     */
-    public boolean isActivo() {
-        return activo;
-    }
-
-    /**
-     * Establece el estado de actividad del pastor.
-     * @param activo Nuevo estado de actividad
-     */
-    public void setActivo(boolean activo) {
-        this.activo = activo;
     }
 }
