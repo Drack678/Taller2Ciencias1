@@ -64,4 +64,12 @@ public class Pila {
             return pastor;
         }
     }
+
+    /**
+     * Obtiene el nodo que está en la cima de la pila.
+     * @return El nodo en la cima de la pila, o {@code null} si la pila está vacía.
+     */
+    public Nodo getCima() {
+        return cima;
+    }
 }

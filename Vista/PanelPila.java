@@ -39,7 +39,7 @@ public class PanelPila extends JPanel {
         int x = 50;
         int y = 40;
 
-        Nodo actual = pila.cima; // la cima está arriba
+        Nodo actual = pila.getCima(); // la cima está arriba
         while (actual != null) {
             // Dibujar imagen
             g.drawImage(imgPastor, x, y, 40, 40, this);

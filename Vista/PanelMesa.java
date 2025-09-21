@@ -38,7 +38,7 @@ public class PanelMesa extends JPanel {
         int radio = 200;
         int n = mesa.getTamannio();
 
-        Nodo actual = mesa.head;
+        Nodo actual = mesa.getHead();
         for (int i = 0; i < n; i++) {
             double angle = 2 * Math.PI * i / n;
             int x = (int) (centerX + radio * Math.cos(angle));

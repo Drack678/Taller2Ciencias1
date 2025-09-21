@@ -123,5 +123,14 @@ public class Mesa {
     public int getTamannio() {
         return tamannio;
     }
+
+    /**
+     * Obtiene el nodo cabeza de la mesa.
+     * 
+     * @return El nodo cabeza de la mesa.
+     */
+    public Nodo getHead() {
+        return head;
+    }
     
 }
