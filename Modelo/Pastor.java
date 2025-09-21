@@ -90,4 +90,16 @@ public class Pastor {
     public void setFeligreses(int feligreses) {
         this.feligreses = feligreses;
     }
+
+    /**
+     * Devuelve una representación en cadena del objeto Pastor, incluyendo su id, tesoro, oficio y feligreses.
+     *
+     * @return una cadena que describe el estado actual del objeto Pastor
+     */
+    @Override
+    public String toString() {
+        return "Pastor [id=" + id + ", tesoro=" + tesoro + ", oficio=" + oficio + ", feligreses=" + feligreses + "]";
+    }
+
+    
 }
