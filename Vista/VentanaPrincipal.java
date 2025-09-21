@@ -1,15 +1,16 @@
 package Vista;
 
 import Modelo.*;
-
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class VentanaPrincipal extends JFrame {
-
+    
     private PanelMesa panelMesa;
     private PanelPila panelPila;
-
+    private JButton btnReordenar;
+    private JButton btnEliminar;
+    
     public VentanaPrincipal(Mesa mesa, Pila pila) {
         setTitle("Juego de los Pastores");
         setSize(900, 600);
@@ -18,7 +19,6 @@ public class VentanaPrincipal extends JFrame {
 
         panelMesa = new PanelMesa(mesa);
         panelPila = new PanelPila(pila);
-
         add(panelMesa, BorderLayout.CENTER);
         add(panelPila, BorderLayout.EAST);
 
@@ -32,18 +32,24 @@ public class VentanaPrincipal extends JFrame {
         add(panelBotones, BorderLayout.SOUTH);
     }
 
-    public static void main(String[] args) {
-        // Demo con 5 pastores
-        Mesa mesa = new Mesa(null, null, 0);
-        Pila pila = new Pila();
-        Generador gen = new Generador();
-
-        for (int i = 0; i < 5; i++) {
-            mesa.addPastor(gen.generarPastor());
-        }
-
-        SwingUtilities.invokeLater(() -> {
-            new VentanaPrincipal(mesa, pila).setVisible(true);
-        });
+    public PanelMesa getPanelMesa() {
+        return panelMesa;
     }
+
+    public PanelPila getPanelPila() {
+        return panelPila;
+    }
+
+    public JButton getBtnReordenar() {
+        return btnReordenar;
+    }
+
+    public JButton getBtnEliminar() {
+        return btnEliminar;
+    }
+
 }
+
+
+
+
