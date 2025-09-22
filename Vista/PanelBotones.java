@@ -42,19 +42,26 @@ public class PanelBotones extends JPanel {
         revalidate();
         repaint();
     }
-
-    // -------- Métodos públicos --------
-
+    
+    /**
+     * @return the btnRevivir
+     */
     public JButton getBtnRevivir() {
         return btnRevivir;
     }
-
+    /**
+     * @return the btnEliminar
+     */
     public JButton getBtnEliminar() {
         return btnEliminar;
     }
-
+    /**
+     * @return the btnRobar
+     */
     public JButton getBtnRobar() {
         return btnRobar;
     }
+
+    
 
 }

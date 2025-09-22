@@ -18,7 +18,7 @@ public class VentanaPrincipal extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // 🔹 Panel superior con etiquetas
+        // Panel superior con etiquetas
         JPanel panelSuperior = new JPanel();
         panelSuperior.setLayout(new BoxLayout(panelSuperior, BoxLayout.Y_AXIS));
         panelSuperior.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -40,11 +40,11 @@ public class VentanaPrincipal extends JFrame {
         panelSuperior.add(idPastor);
         panelSuperior.add(turnos);
 
-        // 🔹 Panel de estructuras (centro)
+        // Panel de estructuras (centro)
         panelEstructuras = new PanelEstructuras();
         panelEstructuras.setElementos(datos);
 
-        // 🔹 Paneles inferiores
+        // Paneles inferiores
         panelOpciones = new PanelOpciones();
         panelOpciones.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40));
 
@@ -59,37 +59,31 @@ public class VentanaPrincipal extends JFrame {
 
         mostrarPanelOpciones();
 
-        // Listeners para alternar visibilidad
-        panelOpciones.getComponent(0).addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mostrarPanelBotones();
-            }
-        });
-
-        panelOpciones.getComponent(1).addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mostrarPanelBotones();
-            }
-        });
-
-        panelBotones.getBtnRevivir().addActionListener(e -> mostrarPanelOpciones());
-        panelBotones.getBtnEliminar().addActionListener(e -> mostrarPanelOpciones());
-        panelBotones.getBtnRobar().addActionListener(e -> mostrarPanelOpciones());
-
         // 🔹 Agregar todo al Frame
         add(panelSuperior, BorderLayout.NORTH);
         add(panelEstructuras, BorderLayout.CENTER);
         add(panelInferior, BorderLayout.SOUTH);
     }
 
-    private void mostrarPanelOpciones() {
+   public void mostrarPanelOpciones() {
         CardLayout cl = (CardLayout) panelInferior.getLayout();
         cl.show(panelInferior, "opciones");
     }
 
-    private void mostrarPanelBotones() {
+    public void mostrarPanelBotones() {
         CardLayout cl = (CardLayout) panelInferior.getLayout();
         cl.show(panelInferior, "botones");
     }
-}
 
+    public PanelOpciones getPanelOpciones() {
+        return panelOpciones;
+    }
+
+    public PanelBotones getPanelBotones() {
+        return panelBotones;
+    }
+
+    public PanelEstructuras getPanelEstructuras() {
+        return panelEstructuras;
+    }
+}
