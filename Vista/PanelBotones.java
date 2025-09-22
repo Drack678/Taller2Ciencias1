@@ -1,14 +1,12 @@
 package Vista;
 
-import Controlador.JuegoControler;
-import java.awt.*;
 import javax.swing.*;
 
 /**
  * VentanaInicio permite al usuario ingresar la cantidad de pastores
  * para iniciar el juego.
  */
-public class PanelBotones extends JFrame {
+public class PanelBotones extends JPanel {
 
     
 }

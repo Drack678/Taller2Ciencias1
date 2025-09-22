@@ -1,4 +1,5 @@
 package Vista;
-public class PanelEstructuras {
+import javax.swing.*;
+public class PanelEstructuras extends JPanel {
     
 }

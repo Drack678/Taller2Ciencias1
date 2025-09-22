@@ -1,5 +1,7 @@
 package Vista;
 
-public class PanelOpciones {
+import javax.swing.*;
+
+public class PanelOpciones extends JPanel {
     
 }
