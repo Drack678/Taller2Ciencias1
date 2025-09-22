@@ -66,33 +66,35 @@ public class Mesa {
     }
 
     /**
-     * Método que retorna el tamaño actual de la mesa.
-     * @return número de elementos en la mesa
+     * Verifica si el pastor dado tiene el menor tesoro entre todos en la mesa.
+     * 
+     * @param pastorSeleccionado el pastor que se quiere validar
+     * @return true si el pastor tiene el menor tesoro, false en caso contrario
      */
-    public int getTamannio() {
-        return tamannio;
-    }
 
-    /**
-     * Método que retorna el primer nodo de la mesa.
-     * @return nodo inicial
-     */
-    public Nodo getHead() {
-        return head;
-    }
+    public boolean esTesoroMenor(Pastor pastorSeleccionado) {
+        if (head == null || pastorSeleccionado == null) {
+            return false;
+        }
     
-    /**
-     * Retorna un iterador para recorrer la mesa circular.
-     * @return iterador de tipo IteradorMesa
-     */
-    public IteradorMesa iterador() {
-        return new IteradorMesa(head, tamannio);
+        IteradorMesa it = iterador();
+            while (it.tieneSiguiente()) {
+            Pastor actual = it.siguiente();
+    
+            // Evitamos comparar contra sí mismo
+            if (actual.getId() != pastorSeleccionado.getId()) {
+                if (pastorSeleccionado.getTesoro() > actual.getTesoro()) {
+                    return false; // encontró uno menor → ya no es el menor
+                }
+            }
+        }
+        return true; // es menor a todos
     }
-
     /**
      * Clase interna que implementa un iterador seguro para recorrer
      * la mesa circular doblemente enlazada.
      */
+    
     public static class IteradorMesa {
         private Nodo actual;
         private int elementosRestantes;
@@ -129,4 +131,29 @@ public class Mesa {
             return p;
         }
     }
+    
+    /**
+     * Método que retorna el tamaño actual de la mesa.
+     * @return número de elementos en la mesa
+     */
+    public int getTamannio() {
+        return tamannio;
+    }
+
+    /**
+     * Método que retorna el primer nodo de la mesa.
+     * @return nodo inicial
+     */
+    public Nodo getHead() {
+        return head;
+    }
+    
+    /**
+     * Retorna un iterador para recorrer la mesa circular.
+     * @return iterador de tipo IteradorMesa
+     */
+    public IteradorMesa iterador() {
+        return new IteradorMesa(head, tamannio);
+    }
+    
 }
