@@ -3,14 +3,28 @@ package Vista;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * PanelEstructuras es un panel personalizado que representa gráficamente una estructura circular
+ * con nodos alrededor de un círculo central y un rectángulo lateral. 
+ * Cada nodo muestra información textual proporcionada en el arreglo de elementos.
+ */
 public class PanelEstructuras extends JPanel {
     private String[] elementos;
 
+    /**
+     * Establece los elementos que serán representados como nodos en el panel.
+     * @param datos Arreglo de cadenas con la información de cada nodo.
+     */
     public void setElementos(String[] datos) {
         this.elementos = datos;
         repaint();
     }
 
+    /**
+     * Dibuja la estructura circular con los nodos y el rectángulo lateral.
+     * Cada nodo se posiciona equidistantemente alrededor de un círculo central y muestra su información.
+     * @param g El contexto gráfico utilizado para dibujar.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -18,11 +32,11 @@ public class PanelEstructuras extends JPanel {
 
         int n = elementos.length;
 
-        // 🔹 Centro en 1/3 del ancho y centrado verticalmente
+        // Calcula el centro del círculo principal
         int centroX = getWidth() / 3;
         int centroY = getHeight() / 2;
 
-        // 🔹 Dibuja el círculo azul central
+        // Dibuja el círculo central
         int diametroCentro = 200;
         int radioCentro = diametroCentro / 2;
 
@@ -32,7 +46,7 @@ public class PanelEstructuras extends JPanel {
         g.setColor(Color.BLACK);
         g.drawOval(centroX - radioCentro, centroY - radioCentro, diametroCentro, diametroCentro);
 
-        // 🔹 Dibuja los nodos alrededor del círculo azul
+        // Dibuja los nodos alrededor del círculo central
         int radio = Math.min(getWidth(), getHeight()) / 3;
         int diametroNodo = 120; 
         int radioNodo = diametroNodo / 2;
@@ -42,14 +56,13 @@ public class PanelEstructuras extends JPanel {
             int x = (int) (centroX + radio * Math.cos(angulo));
             int y = (int) (centroY + radio * Math.sin(angulo));
 
-            // 🔹 Dibuja nodo gris
             g.setColor(Color.LIGHT_GRAY);
             g.fillOval(x - radioNodo, y - radioNodo, diametroNodo, diametroNodo);
 
             g.setColor(Color.BLACK);
             g.drawOval(x - radioNodo, y - radioNodo, diametroNodo, diametroNodo);
 
-            // 🔹 Texto con múltiples líneas
+            // Dibuja el texto de cada nodo, permitiendo múltiples líneas
             String[] lineas = elementos[i].split("\n");
             FontMetrics fm = g.getFontMetrics();
             int lineHeight = fm.getHeight();
@@ -62,11 +75,11 @@ public class PanelEstructuras extends JPanel {
             }
         }
 
-        // 🔹 Rectángulo en 7/8 del ancho
+        // Dibuja el rectángulo lateral derecho
         int rectWidth = 200;
         int rectHeight = 300;
-        int rectX = (getWidth() * 7) / 8 - rectWidth / 2; // centro en 7/8
-        int rectY = centroY - rectHeight / 2;             // centrado vertical
+        int rectX = (getWidth() * 7) / 8 - rectWidth / 2;
+        int rectY = centroY - rectHeight / 2;
 
         g.setColor(new Color(220, 240, 220));
         g.fillRect(rectX, rectY, rectWidth, rectHeight);
@@ -75,6 +88,3 @@ public class PanelEstructuras extends JPanel {
         g.drawRect(rectX, rectY, rectWidth, rectHeight);
     }
 }
-
-
-

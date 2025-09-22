@@ -14,6 +14,15 @@ public class PanelBotones extends JPanel {
     private JButton btnEliminar;
     private JButton btnRobar;
 
+    /**
+     * PanelBotones es un panel personalizado que contiene tres botones: "Revivir", "Eliminar" y "Robar".
+     * Utiliza un BorderLayout con separación horizontal de 20 píxeles y un borde vacío de 10 píxeles en cada lado.
+     * El botón "Robar" está oculto inicialmente.
+     * Los botones se distribuyen de la siguiente manera:
+     * - "Revivir" en el lado oeste (izquierda)
+     * - "Robar" en el centro
+     * - "Eliminar" en el lado este (derecha)
+     */
     public PanelBotones() {
         setLayout(new BorderLayout(20, 0)); // separación horizontal de 20px
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -57,7 +66,4 @@ public class PanelBotones extends JPanel {
     public JButton getBtnRobar() {
         return btnRobar;
     }
-
-    
-
 }

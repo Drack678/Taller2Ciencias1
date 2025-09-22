@@ -3,13 +3,24 @@ package Vista;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * La clase VentanaPrincipal representa la ventana principal de la interfaz gráfica del juego de pastores.
+ * Contiene los paneles superiores con información, el panel central para visualizar la estructura de la mesa,
+ * y un panel inferior con opciones y botones de acción, gestionados mediante un CardLayout.
+ */
 public class VentanaPrincipal extends JFrame {
 
     private PanelOpciones panelOpciones;
     private PanelBotones panelBotones;
-    private JPanel panelInferior; // contendrá los dos paneles con CardLayout
-    private PanelEstructuras panelEstructuras; // el panel de la "mesa"
+    private JPanel panelInferior;
+    private PanelEstructuras panelEstructuras;
 
+    /**
+     * Constructor de VentanaPrincipal.
+     * Inicializa la ventana, los paneles y organiza la disposición de los componentes.
+     *
+     * @param datos Arreglo de cadenas con la información de los elementos a mostrar en la mesa.
+     */
     public VentanaPrincipal(String[] datos) {
 
         setTitle("Juego de Pastores");
@@ -18,7 +29,6 @@ public class VentanaPrincipal extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // Panel superior con etiquetas
         JPanel panelSuperior = new JPanel();
         panelSuperior.setLayout(new BoxLayout(panelSuperior, BoxLayout.Y_AXIS));
         panelSuperior.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -36,15 +46,13 @@ public class VentanaPrincipal extends JFrame {
         turnos.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         panelSuperior.add(titulo);
-        panelSuperior.add(Box.createVerticalStrut(10)); // espacio entre labels
+        panelSuperior.add(Box.createVerticalStrut(10));
         panelSuperior.add(idPastor);
         panelSuperior.add(turnos);
 
-        // Panel de estructuras (centro)
         panelEstructuras = new PanelEstructuras();
         panelEstructuras.setElementos(datos);
 
-        // Paneles inferiores
         panelOpciones = new PanelOpciones();
         panelOpciones.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40));
 
@@ -59,34 +67,55 @@ public class VentanaPrincipal extends JFrame {
 
         mostrarPanelOpciones();
 
-        // 🔹 Agregar todo al Frame
         add(panelSuperior, BorderLayout.NORTH);
         add(panelEstructuras, BorderLayout.CENTER);
         add(panelInferior, BorderLayout.SOUTH);
     }
 
-   public void mostrarPanelOpciones() {
+    /**
+     * Muestra el panel de opciones en la parte inferior de la ventana.
+     */
+    public void mostrarPanelOpciones() {
         CardLayout cl = (CardLayout) panelInferior.getLayout();
         cl.show(panelInferior, "opciones");
     }
 
+    /**
+     * Muestra el panel de botones en la parte inferior de la ventana.
+     */
     public void mostrarPanelBotones() {
         CardLayout cl = (CardLayout) panelInferior.getLayout();
         cl.show(panelInferior, "botones");
     }
 
+    /**
+     * Obtiene el panel de opciones.
+     * @return el panel de opciones.
+     */
     public PanelOpciones getPanelOpciones() {
         return panelOpciones;
     }
 
+    /**
+     * Obtiene el panel de botones.
+     * @return el panel de botones.
+     */
     public PanelBotones getPanelBotones() {
         return panelBotones;
     }
 
+    /**
+     * Obtiene el panel de estructuras (mesa).
+     * @return el panel de estructuras.
+     */
     public PanelEstructuras getPanelEstructuras() {
         return panelEstructuras;
     }
 
+    /**
+     * Método principal para ejecutar la ventana de prueba.
+     * @param args Argumentos de línea de comandos (no se utilizan).
+     */
     public static void main(String[] args) {
         String[] datos = {"P1,10,5", "P2,15,3", "P3,8,7", "P4,20,2"};
         VentanaPrincipal ventana = new VentanaPrincipal(datos);
