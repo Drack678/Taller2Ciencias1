@@ -2,8 +2,10 @@ package Modelo;
 
 /**
  * La clase Juego representa la lógica principal del juego de pastores.
- * Controla el flujo de turnos, las acciones posibles (robar, revivir, eliminar), 
- * y mantiene la referencia a la mesa de juego, la pila de pastores eliminados y el pastor actual.
+ * Controla el flujo de turnos, las acciones posibles (robar, revivir,
+ * eliminar),
+ * y mantiene la referencia a la mesa de juego, la pila de pastores eliminados y
+ * el pastor actual.
  */
 public class Juego {
     private int turno; // Número de turno actual
@@ -26,6 +28,7 @@ public class Juego {
 
     /**
      * Obtiene el número de turno actual.
+     * 
      * @return el turno actual.
      */
     public int getTurno() {
@@ -34,6 +37,7 @@ public class Juego {
 
     /**
      * Establece el número de turno actual.
+     * 
      * @param turno el turno a establecer.
      */
     public void setTurno(int turno) {
@@ -41,7 +45,9 @@ public class Juego {
     }
 
     /**
-     * Inicializa la mesa con una cantidad dada de pastores generados aleatoriamente.
+     * Inicializa la mesa con una cantidad dada de pastores generados
+     * aleatoriamente.
+     * 
      * @param n número de pastores a agregar a la mesa.
      */
     public void initMesa(int n) {
@@ -76,7 +82,8 @@ public class Juego {
     /**
      * Ejecuta una acción en el turno actual.
      * Las acciones pueden ser: "robar", "revivir" o "eliminar".
-     * @param accion la acción a realizar ("robar", "revivir", "eliminar").
+     * 
+     * @param accion    la acción a realizar ("robar", "revivir", "eliminar").
      * @param direccion la dirección para eliminar ("derecha" o "izquierda").
      */
     public void jugar(String accion, String direccion) {
@@ -89,18 +96,18 @@ public class Juego {
             masRico.getPastor().setTesoro(masRico.getPastor().getTesoro() - tesoroRobado);
             masRico.getPastor().setFeligreses(masRico.getPastor().getFeligreses() - feligresesRobados);
             nodoActual = masRico;
-        }
-        else if (accion.equals("revivir")) {
+        } else if (accion.equals("revivir")) {
             Nodo nodoRevivido = pilaEliminados.pop();
-            nodoRevivido.getPastor().setTesoro(nodoActual.getPastor().getTesoro() / 2);
-            nodoRevivido.getPastor().setFeligreses(nodoActual.getPastor().getFeligreses() / 2);
-            nodoActual.getPastor().setTesoro(nodoActual.getPastor().getTesoro() / 2);
-            nodoActual.getPastor().setFeligreses(nodoActual.getPastor().getFeligreses() / 2);
-            mesa.addPastor(nodoRevivido.getPastor());
-            mesa.reordenarMesa();
-            nodoActual = nodoRevivido;
-        } 
-        else if (accion.equals("eliminar")) {
+            if (nodoRevivido.getPastor().getOficio().equals(nodoActual.getPastor().getOficio())) {
+                nodoRevivido.getPastor().setTesoro(nodoActual.getPastor().getTesoro() / 2);
+                nodoRevivido.getPastor().setFeligreses(nodoActual.getPastor().getFeligreses() / 2);
+                nodoActual.getPastor().setTesoro(nodoActual.getPastor().getTesoro() / 2);
+                nodoActual.getPastor().setFeligreses(nodoActual.getPastor().getFeligreses() / 2);
+                mesa.addPastor(nodoRevivido.getPastor());
+                mesa.reordenarMesa();
+                nodoActual = nodoRevivido;
+            }
+        } else if (accion.equals("eliminar")) {
             Nodo masPobre = encontrarPastorMasPobre(nodoActual.getSiguiente(), direccion);
             mesa.deletePastor(masPobre.getPastor());
             pilaEliminados.push(masPobre);
@@ -112,7 +119,8 @@ public class Juego {
 
     /**
      * Busca el pastor más pobre en una dirección específica a partir de un nodo.
-     * @param inicio nodo desde el cual comenzar la búsqueda.
+     * 
+     * @param inicio    nodo desde el cual comenzar la búsqueda.
      * @param direccion dirección de búsqueda ("derecha" o "izquierda").
      * @return el nodo del pastor más pobre encontrado.
      */
@@ -139,6 +147,7 @@ public class Juego {
 
     /**
      * Busca el pastor más pobre en toda la mesa.
+     * 
      * @return el nodo del pastor más pobre.
      */
     public Nodo encontrarPastorMaspobre() {
@@ -155,6 +164,7 @@ public class Juego {
 
     /**
      * Busca el pastor más rico en toda la mesa a partir de un nodo.
+     * 
      * @param inicio nodo desde el cual comenzar la búsqueda.
      * @return el nodo del pastor más rico.
      */
@@ -172,6 +182,7 @@ public class Juego {
 
     /**
      * Establece el nodo actual (pastor actual del turno).
+     * 
      * @param nodoActual el nodo a establecer como actual.
      */
     public void setNodorActual(Nodo nodoActual) {
@@ -180,6 +191,7 @@ public class Juego {
 
     /**
      * Obtiene el nodo actual (pastor actual del turno).
+     * 
      * @return el nodo actual.
      */
     public Nodo getNodoActual() {
@@ -188,6 +200,7 @@ public class Juego {
 
     /**
      * Obtiene el número de pastores en la mesa.
+     * 
      * @return el número de pastores.
      */
     public int getnumeroPastores() {
@@ -196,6 +209,7 @@ public class Juego {
 
     /**
      * Obtiene la mesa de juego.
+     * 
      * @return la mesa.
      */
     public Mesa getMesa() {
