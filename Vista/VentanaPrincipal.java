@@ -8,31 +8,56 @@ public class VentanaPrincipal extends JFrame {
     private PanelOpciones panelOpciones;
     private PanelBotones panelBotones;
     private JPanel panelInferior; // contendrá los dos paneles con CardLayout
+    private PanelEstructuras panelEstructuras; // el panel de la "mesa"
 
     public VentanaPrincipal() {
-       
+
         setTitle("Juego de Pastores");
-        setSize(800, 600);
+        setSize(1500, 1000);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // Crear paneles
+        // 🔹 Panel superior con etiquetas
+        JPanel panelSuperior = new JPanel();
+        panelSuperior.setLayout(new BoxLayout(panelSuperior, BoxLayout.Y_AXIS));
+        panelSuperior.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        JLabel titulo = new JLabel("Mesa redonda de iluminados de la sagrada orden del tío Sam", SwingConstants.CENTER);
+        titulo.setFont(new Font("Serif", Font.BOLD, 22));
+        titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel idPastor = new JLabel("ID Pastor", SwingConstants.CENTER);
+        idPastor.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        idPastor.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel turnos = new JLabel("Turnos", SwingConstants.CENTER);
+        turnos.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        turnos.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        panelSuperior.add(titulo);
+        panelSuperior.add(Box.createVerticalStrut(10)); // espacio entre labels
+        panelSuperior.add(idPastor);
+        panelSuperior.add(turnos);
+
+        // 🔹 Panel de estructuras (centro)
+        panelEstructuras = new PanelEstructuras();
+        String[] datos = {"A \n min \n mola", "B", "C", "D", "E", "F", "G", "H"};
+        panelEstructuras.setElementos(datos);
+
+        // 🔹 Paneles inferiores
         panelOpciones = new PanelOpciones();
-        panelOpciones.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40)); // margen interno
+        panelOpciones.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40));
 
         panelBotones = new PanelBotones();
-        panelBotones.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40)); // margen interno
+        panelBotones.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40));
 
-        // Contenedor con CardLayout para intercambiar paneles
         panelInferior = new JPanel(new CardLayout());
-        panelInferior.setBorder(BorderFactory.createEmptyBorder(10, 10, 30, 10)); // espacio con el borde de la ventana
+        panelInferior.setBorder(BorderFactory.createEmptyBorder(10, 10, 30, 10));
 
-        // Agregar los dos paneles al CardLayout
         panelInferior.add(panelOpciones, "opciones");
         panelInferior.add(panelBotones, "botones");
 
-        // Mostrar primero las opciones
         mostrarPanelOpciones();
 
         // Listeners para alternar visibilidad
@@ -52,9 +77,10 @@ public class VentanaPrincipal extends JFrame {
         panelBotones.getBtnEliminar().addActionListener(e -> mostrarPanelOpciones());
         panelBotones.getBtnRobar().addActionListener(e -> mostrarPanelOpciones());
 
-        // Agregar panel inferior en el SUR
+        // 🔹 Agregar todo al Frame
+        add(panelSuperior, BorderLayout.NORTH);
+        add(panelEstructuras, BorderLayout.CENTER);
         add(panelInferior, BorderLayout.SOUTH);
-        
     }
 
     private void mostrarPanelOpciones() {
@@ -74,3 +100,4 @@ public class VentanaPrincipal extends JFrame {
         });
     }
 }
+
