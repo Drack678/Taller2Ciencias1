@@ -88,31 +88,6 @@ public class Mesa {
         return pastorRevivido.getPastor();
     }
 
-    /**
-     * Verifica si el pastor dado tiene el menor tesoro entre todos en la mesa.
-     * 
-     * @param pastorSeleccionado el pastor que se quiere validar
-     * @return true si el pastor tiene el menor tesoro, false en caso contrario
-     */
-
-    public boolean esTesoroMenor(Pastor pastorSeleccionado) {
-        if (head == null || pastorSeleccionado == null) {
-            return false;
-        }
-
-        IteradorMesa it = iterador();
-        while (it.tieneSiguiente()) {
-            Pastor actual = it.siguiente();
-
-            // Evitamos comparar contra sí mismo
-            if (actual.getId() != pastorSeleccionado.getId()) {
-                if (pastorSeleccionado.getTesoro() > actual.getTesoro()) {
-                    return false; // encontró uno menor → ya no es el menor
-                }
-            }
-        }
-        return true; // es menor a todos
-    }
 
     public void reordenarMesa() {
         if (head == null)
@@ -154,51 +129,6 @@ public class Mesa {
     }
 
     /**
-     * Clase interna que implementa un iterador seguro para recorrer
-     * la mesa circular doblemente enlazada.
-     */
-
-    public static class IteradorMesa {
-        private Nodo actual;
-        private int elementosRestantes;
-
-        /**
-         * Constructor del iterador.
-         * 
-         * @param head     referencia al primer nodo
-         * @param tamannio número de elementos a recorrer
-         */
-        public IteradorMesa(Nodo head, int tamannio) {
-            this.actual = head;
-            this.elementosRestantes = tamannio;
-        }
-
-        /**
-         * Verifica si hay más elementos por recorrer.
-         * 
-         * @return true si hay más elementos, false en caso contrario
-         */
-        public boolean tieneSiguiente() {
-            return elementosRestantes > 0 && actual != null;
-        }
-
-        /**
-         * Retorna el siguiente pastor en la mesa.
-         * 
-         * @return pastor actual
-         */
-        public Pastor siguiente() {
-            if (!tieneSiguiente()) {
-                throw new IllegalStateException("No hay más elementos en la mesa");
-            }
-            Pastor p = actual.getPastor();
-            actual = actual.getSiguiente(); // avanzar en la lista circular
-            elementosRestantes--;
-            return p;
-        }
-    }
-
-    /**
      * Método que retorna el tamaño actual de la mesa.
      * 
      * @return número de elementos en la mesa
@@ -216,13 +146,5 @@ public class Mesa {
         return head;
     }
 
-    /**
-     * Retorna un iterador para recorrer la mesa circular.
-     * 
-     * @return iterador de tipo IteradorMesa
-     */
-    public IteradorMesa iterador() {
-        return new IteradorMesa(head, tamannio);
-    }
 
 }

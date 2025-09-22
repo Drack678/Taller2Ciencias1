@@ -86,4 +86,10 @@ public class VentanaPrincipal extends JFrame {
     public PanelEstructuras getPanelEstructuras() {
         return panelEstructuras;
     }
+
+    public static void main(String[] args) {
+        String[] datos = {"P1,10,5", "P2,15,3", "P3,8,7", "P4,20,2"};
+        VentanaPrincipal ventana = new VentanaPrincipal(datos);
+        ventana.setVisible(true);
+    }
 }

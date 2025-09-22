@@ -2,7 +2,6 @@ package Vista;
 
 import javax.swing.*;
 import java.awt.*;
-import Modelo.*;
 
 /**
  * VentanaInicio permite al usuario ingresar la cantidad de pastores
@@ -36,11 +35,8 @@ public class PanelBotones extends JPanel {
      * Muestra el botón "Robar" solo si el tesoro del pastor
      * seleccionado es menor que todos los demás.
      */
-    public void validarBotonRobar(Pastor pastorSeleccionado, Mesa mesa) {
-        boolean puedeRobar = mesa.esTesoroMenor(pastorSeleccionado);
-        btnRobar.setVisible(puedeRobar);
-        revalidate();
-        repaint();
+    public void validarBotonRobar(boolean esMenor) {
+        btnRobar.setVisible(esMenor);
     }
     
     /**
