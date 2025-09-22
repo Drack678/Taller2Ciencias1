@@ -39,8 +39,8 @@ public class Pila {
      * Apila un nuevo objeto Pastor en la cima de la pila.
      * @param pastor El objeto Pastor a apilar.
      */
-    public void push(Pastor pastor) {
-        Nodo nuevoNodo = new Nodo(pastor);
+    public void push(Nodo nodo) {
+        Nodo nuevoNodo = nodo;
         if (estaVacia())
             cima = nuevoNodo;
         else {
@@ -54,14 +54,14 @@ public class Pila {
      * Desapila el objeto Pastor de la cima de la pila y lo devuelve.
      * @return El objeto Pastor desapilado, o {@code null} si la pila está vacía.
      */
-    public Pastor pop() {
+    public Nodo pop() {
         if (estaVacia())
             return null;
         else {
-            Pastor pastor = cima.getPastor();
+            Nodo nodo = cima;
             cima = cima.getSiguiente();
             tamanio--;
-            return pastor;
+            return nodo;
         }
     }
 

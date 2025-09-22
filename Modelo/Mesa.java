@@ -83,9 +83,9 @@ public class Mesa {
             return null; // No hay nada que revivir
         }
 
-        Pastor pastorRevivido = pila.pop(); // Sacar el pastor de la pila
-        addPastor(pastorRevivido);          // Volverlo a ingresar a la mesa
-        return pastorRevivido;
+        Nodo pastorRevivido = pila.pop(); // Sacar el pastor de la pila
+        addPastor(pastorRevivido.getPastor());          // Volverlo a ingresar a la mesa
+        return pastorRevivido.getPastor();
     }
 
     /**
