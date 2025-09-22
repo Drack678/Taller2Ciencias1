@@ -11,6 +11,25 @@ public class Juego {
         this.numeroPastores = 0;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Getters && Setters
     public int getTurno() {
         return turno;
     }

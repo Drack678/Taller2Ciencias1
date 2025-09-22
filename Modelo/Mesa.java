@@ -71,6 +71,22 @@ public class Mesa {
             actual = actual.getSiguiente();
         } while (actual != head);
     }
+    
+    /**
+     * Revive un pastor desde la pila y lo agrega nuevamente a la mesa.
+     * 
+     * @param pila la pila de la cual se extraerá el pastor.
+     * @return el pastor revivido, o null si la pila estaba vacía.
+     */
+    public Pastor revivirPastor(Pila pila) {
+        if (pila == null || pila.estaVacia()) {
+            return null; // No hay nada que revivir
+        }
+
+        Pastor pastorRevivido = pila.pop(); // Sacar el pastor de la pila
+        addPastor(pastorRevivido);          // Volverlo a ingresar a la mesa
+        return pastorRevivido;
+    }
 
     /**
      * Verifica si el pastor dado tiene el menor tesoro entre todos en la mesa.
