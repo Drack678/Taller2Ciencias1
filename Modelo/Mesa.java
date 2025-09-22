@@ -1,14 +1,16 @@
 package Modelo;
 
 /**
- * Clase que representa la mesa de juego como una lista circular doblemente enlazada.
- * Permite almacenar y manipular nodos de tipo Pastor, asegurando las condiciones
+ * Clase que representa la mesa de juego como una lista circular doblemente
+ * enlazada.
+ * Permite almacenar y manipular nodos de tipo Pastor, asegurando las
+ * condiciones
  * de vecindad y circularidad.
  */
 public class Mesa {
 
-    private Nodo head; // Primer nodo 
-    private Nodo tail; // Nodo Final 
+    private Nodo head; // Primer nodo
+    private Nodo tail; // Nodo Final
     private int tamannio; // tamaño de la mesa
 
     /**
@@ -22,6 +24,7 @@ public class Mesa {
 
     /**
      * Método para agregar un pastor a la mesa.
+     * 
      * @param p el pastor a agregar
      */
     public void addPastor(Pastor p) {
@@ -43,10 +46,12 @@ public class Mesa {
 
     /**
      * Método para eliminar un pastor de la mesa.
+     * 
      * @param p el pastor a eliminar
      */
     public void deletePastor(Pastor p) {
-        if (head == null) return;
+        if (head == null)
+            return;
         Nodo actual = head;
         do {
             if (actual.getPastor().equals(p)) {
@@ -55,8 +60,10 @@ public class Mesa {
                 } else {
                     actual.getAnterior().setSiguiente(actual.getSiguiente());
                     actual.getSiguiente().setAnterior(actual.getAnterior());
-                    if (actual == head) head = actual.getSiguiente();
-                    if (actual == tail) tail = actual.getAnterior();
+                    if (actual == head)
+                        head = actual.getSiguiente();
+                    if (actual == tail)
+                        tail = actual.getAnterior();
                 }
                 tamannio--;
                 break;
@@ -76,11 +83,11 @@ public class Mesa {
         if (head == null || pastorSeleccionado == null) {
             return false;
         }
-    
+
         IteradorMesa it = iterador();
-            while (it.tieneSiguiente()) {
+        while (it.tieneSiguiente()) {
             Pastor actual = it.siguiente();
-    
+
             // Evitamos comparar contra sí mismo
             if (actual.getId() != pastorSeleccionado.getId()) {
                 if (pastorSeleccionado.getTesoro() > actual.getTesoro()) {
@@ -90,18 +97,59 @@ public class Mesa {
         }
         return true; // es menor a todos
     }
+
+    public void reordenarMesa() {
+        if (head == null)
+            return;
+
+        Nodo actual = head;
+        do {
+            if (!verificarCondicionMesa(actual)) {
+                Nodo candidato = actual.getSiguiente().getSiguiente();
+                while (candidato != head && actual.getPastor().getOficio().equals(candidato.getPastor().getOficio())) {
+                    candidato = candidato.getSiguiente();
+                }
+                if (candidato != head) {
+                    Pastor temp = actual.getSiguiente().getPastor();
+                    actual.getSiguiente().setPastor(candidato.getPastor());
+                    candidato.setPastor(temp);
+                }
+            }
+            actual = actual.getSiguiente();
+        } while (actual != head);
+    }
+
+    /**
+     * Verifica si el nodo y su siguiente cumplen la condición de no tener el mismo
+     * oficio.
+     * 
+     * @param nodo Nodo a verificar.
+     * @return true si el nodo y su siguiente tienen oficios diferentes, false en
+     *         caso contrario.
+     */
+    public boolean verificarCondicionMesa(Nodo nodo) {
+        if (nodo == null)
+            return true;
+        Pastor pastorActual = nodo.getPastor();
+        Pastor pastorSiguiente = nodo.getSiguiente().getPastor();
+        if (pastorActual.getOficio().equals(pastorSiguiente.getOficio()))
+            return false;
+        return true;
+    }
+
     /**
      * Clase interna que implementa un iterador seguro para recorrer
      * la mesa circular doblemente enlazada.
      */
-    
+
     public static class IteradorMesa {
         private Nodo actual;
         private int elementosRestantes;
 
         /**
          * Constructor del iterador.
-         * @param head referencia al primer nodo
+         * 
+         * @param head     referencia al primer nodo
          * @param tamannio número de elementos a recorrer
          */
         public IteradorMesa(Nodo head, int tamannio) {
@@ -111,6 +159,7 @@ public class Mesa {
 
         /**
          * Verifica si hay más elementos por recorrer.
+         * 
          * @return true si hay más elementos, false en caso contrario
          */
         public boolean tieneSiguiente() {
@@ -119,6 +168,7 @@ public class Mesa {
 
         /**
          * Retorna el siguiente pastor en la mesa.
+         * 
          * @return pastor actual
          */
         public Pastor siguiente() {
@@ -131,9 +181,10 @@ public class Mesa {
             return p;
         }
     }
-    
+
     /**
      * Método que retorna el tamaño actual de la mesa.
+     * 
      * @return número de elementos en la mesa
      */
     public int getTamannio() {
@@ -142,18 +193,20 @@ public class Mesa {
 
     /**
      * Método que retorna el primer nodo de la mesa.
+     * 
      * @return nodo inicial
      */
     public Nodo getHead() {
         return head;
     }
-    
+
     /**
      * Retorna un iterador para recorrer la mesa circular.
+     * 
      * @return iterador de tipo IteradorMesa
      */
     public IteradorMesa iterador() {
         return new IteradorMesa(head, tamannio);
     }
-    
+
 }

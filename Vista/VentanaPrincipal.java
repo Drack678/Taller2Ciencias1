@@ -10,7 +10,7 @@ public class VentanaPrincipal extends JFrame {
     private JPanel panelInferior; // contendrá los dos paneles con CardLayout
     private PanelEstructuras panelEstructuras; // el panel de la "mesa"
 
-    public VentanaPrincipal() {
+    public VentanaPrincipal(String[] datos) {
 
         setTitle("Juego de Pastores");
         setSize(1500, 1000);
@@ -42,7 +42,6 @@ public class VentanaPrincipal extends JFrame {
 
         // 🔹 Panel de estructuras (centro)
         panelEstructuras = new PanelEstructuras();
-        String[] datos = {"A \n min \n mola", "B", "C", "D", "E", "F", "G", "H"};
         panelEstructuras.setElementos(datos);
 
         // 🔹 Paneles inferiores
@@ -91,13 +90,6 @@ public class VentanaPrincipal extends JFrame {
     private void mostrarPanelBotones() {
         CardLayout cl = (CardLayout) panelInferior.getLayout();
         cl.show(panelInferior, "botones");
-    }
-
-    // Para pruebas rápidas
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new VentanaPrincipal().setVisible(true);
-        });
     }
 }
 
